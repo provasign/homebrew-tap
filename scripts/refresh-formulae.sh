@@ -74,10 +74,10 @@ for tool in "${TOOLS[@]}"; do
 
       Next steps:
         1. cd your-repo
-        2. shale init       writes your agents' instructions and capture hooks, .shale/,
+        2. shale init       writes instructions and capture hooks for your agents, .shale/,
                             and a workflow that renders the card on pull requests
         3. Commit and push what it writes
-        4. Work as usual; your agent's next pull request carries a card
+        4. Work as usual; the next pull request from your agent carries a card
 
       Using Prism or Stele too? `provasign init` sets them up together.
     EOS
