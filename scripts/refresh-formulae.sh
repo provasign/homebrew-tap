@@ -45,21 +45,45 @@ for tool in "${TOOLS[@]}"; do
   class="$(grep -m1 '^class ' "${formula}" | awk '{print $2}')"
   base="https://github.com/provasign/${tool}/releases/download/${ver}"
 
+  # What the tool is for, and the next steps: the same words as its
+  # install.sh and `provasign install`.
   caveats=""
-  if [ "${tool}" = "prism" ]; then
-    caveats='  def caveats
+  case "${tool}" in
+    prism) caveats='  def caveats
     <<~EOS
-      Run `prism init` inside each project after installing or upgrading to
-      configure supported AI clients. Prism setup is project-scoped;
-      `prism init --global` is no longer supported.
+      Prism: context before the edit. It gives your coding agent every caller,
+      implementation and test a change affects, resolved by the compiler, not grep.
 
-      Restart or reload running AI clients after upgrading Prism.
+      Next steps:
+        1. cd your-repo
+        2. prism init       choose your coding agents and how they reach Prism (MCP or CLI)
+        3. prism index      build the code graph
+        4. Restart or reload your coding agent; in Claude Code, approve the
+           .mcp.json servers if asked, then check: claude mcp list
+        5. Commit what init writes
 
-      Prism reports other installed copies when their versions differ.
+      Run `prism init` again in each project after upgrading. Using Shale or
+      Stele too? `provasign init` sets them up together.
     EOS
   end
-'
-  fi
+' ;;
+    shale) caveats='  def caveats
+    <<~EOS
+      Shale: evidence after the edit. It records what your coding agent was asked,
+      touched and checked, and shows it as a card on the pull request.
+
+      Next steps:
+        1. cd your-repo
+        2. shale init       writes your agents' instructions and capture hooks, .shale/,
+                            and a workflow that renders the card on pull requests
+        3. Commit and push what it writes
+        4. Work as usual; your agent's next pull request carries a card
+
+      Using Prism or Stele too? `provasign init` sets them up together.
+    EOS
+  end
+' ;;
+  esac
 
   cat > "${formula}" <<FORMULA
 # typed: false
