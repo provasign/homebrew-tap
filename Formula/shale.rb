@@ -5,21 +5,21 @@
 class Shale < Formula
   desc "Agent PR evidence — intent capture and session evidence rendered on pull requests"
   homepage "https://github.com/provasign/shale"
-  version "0.1.29"
+  version "0.2.0"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/provasign/shale/releases/download/v0.1.29/shale_darwin_amd64.tar.gz"
-      sha256 "367d8453517303b9ee0774eca544d4d6eeeccce5afbf049fef253c17b3119fa8"
+      url "https://github.com/provasign/shale/releases/download/v0.2.0/shale_darwin_amd64.tar.gz"
+      sha256 "609cbec08a286ca96e8bad0a4c58117fcbd7275a15392900a05ed4c81da4f6ed"
 
       define_method(:install) do
         bin.install "shale"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/provasign/shale/releases/download/v0.1.29/shale_darwin_arm64.tar.gz"
-      sha256 "7d8a7a5ad335d04767e327cf48646cc15a3025dee1877f712e3e11112f013785"
+      url "https://github.com/provasign/shale/releases/download/v0.2.0/shale_darwin_arm64.tar.gz"
+      sha256 "6a425533b6916e48ba8b0851560d2144db79c714a2d3532cb06acdd7daeae976"
 
       define_method(:install) do
         bin.install "shale"
@@ -29,18 +29,32 @@ class Shale < Formula
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/provasign/shale/releases/download/v0.1.29/shale_linux_amd64.tar.gz"
-      sha256 "32b0dacd162deb3b81654df628360e86f78e0d19cd91399c58e1798042ba93fe"
+      url "https://github.com/provasign/shale/releases/download/v0.2.0/shale_linux_amd64.tar.gz"
+      sha256 "eb2461319c60186ef81f9604647318d7d770d7c5f705991c809395146fc341d8"
       define_method(:install) do
         bin.install "shale"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/provasign/shale/releases/download/v0.1.29/shale_linux_arm64.tar.gz"
-      sha256 "72c94e691baf48591f52260f4bf1676ee082a06ccbacd193863406c2bd5b38e8"
+      url "https://github.com/provasign/shale/releases/download/v0.2.0/shale_linux_arm64.tar.gz"
+      sha256 "89027f8d428c56bbbcf790c0cb56cea3115a0c01ac49e66b1b3237b38066ad61"
       define_method(:install) do
         bin.install "shale"
       end
     end
+  end
+
+  def caveats
+    <<~EOS
+      Shale: evidence after the edit. It records what your coding agent was asked,
+      touched and checked, and shows it as a card on the pull request.
+
+      Next steps:
+        1. cd your-repo
+        2. shale init       writes instructions and capture hooks for your agents, .shale/,
+                            and a workflow that renders the card on pull requests
+        3. Commit and push what it writes
+        4. Work as usual; the next pull request from your agent carries a card
+    EOS
   end
 end
