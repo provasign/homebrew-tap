@@ -46,7 +46,7 @@ for tool in "${TOOLS[@]}"; do
   base="https://github.com/provasign/${tool}/releases/download/${ver}"
 
   # What the tool is for, and the next steps: the same words as its
-  # install.sh and `provasign install`.
+  # install.sh. Shale's formula comes from its own GoReleaser config.
   caveats=""
   case "${tool}" in
     prism) caveats='  def caveats
@@ -62,24 +62,7 @@ for tool in "${TOOLS[@]}"; do
            .mcp.json servers if asked, then check: claude mcp list
         5. Commit what init writes
 
-      Run `prism init` again in each project after upgrading. Using Shale or
-      Stele too? `provasign init` sets them up together.
-    EOS
-  end
-' ;;
-    shale) caveats='  def caveats
-    <<~EOS
-      Shale: evidence after the edit. It records what your coding agent was asked,
-      touched and checked, and shows it as a card on the pull request.
-
-      Next steps:
-        1. cd your-repo
-        2. shale init       writes instructions and capture hooks for your agents, .shale/,
-                            and a workflow that renders the card on pull requests
-        3. Commit and push what it writes
-        4. Work as usual; the next pull request from your agent carries a card
-
-      Using Prism or Stele too? `provasign init` sets them up together.
+      Run `prism init` again in each project after upgrading.
     EOS
   end
 ' ;;
