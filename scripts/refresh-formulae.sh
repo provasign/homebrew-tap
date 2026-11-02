@@ -8,7 +8,7 @@
 # repository with the built-in GITHUB_TOKEN, so there is no secret to forget.
 set -euo pipefail
 
-TOOLS=("prism" "mason" "fuse" "shale")
+TOOLS=("prism" "mason" "fuse" "shale" "stele")
 changed=0
 
 for tool in "${TOOLS[@]}"; do
@@ -66,7 +66,30 @@ for tool in "${TOOLS[@]}"; do
     EOS
   end
 ' ;;
+    stele) caveats='  def caveats
+    <<~EOS
+      Stele: requirements that hold. It checks each new request or spec change
+      against every approved requirement, and asks you about any contradiction
+      before code is written.
+
+      Next steps:
+        1. cd your-repo
+        2. stele init       finds your specs (or the requests your agents declare
+                            with Shale) and your coding agents; writes their
+                            instructions and hooks, and a git pre-commit hook
+        3. Commit what it writes
+        4. Open your coding agent and work as usual
+    EOS
+  end
+' ;;
   esac
+
+  deps=""
+  if [ "${tool}" = "stele" ]; then
+    deps='
+  depends_on "z3"
+'
+  fi
 
   cat > "${formula}" <<FORMULA
 # typed: false
@@ -77,7 +100,7 @@ class ${class} < Formula
   homepage "https://github.com/provasign/${tool}"
   version "${num}"
   license "Apache-2.0"
-
+${deps}
   on_macos do
     if Hardware::CPU.intel?
       url "${base}/${tool}-${ver}-darwin-amd64"
