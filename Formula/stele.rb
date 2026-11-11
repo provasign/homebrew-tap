@@ -4,45 +4,45 @@
 class Stele < Formula
   desc "Keeps a project's specs consistent: finds requirements that contradict each other"
   homepage "https://github.com/provasign/stele"
-  version "0.1.18"
+  version "0.1.19"
   license "Apache-2.0"
 
   depends_on "z3"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/provasign/stele/releases/download/v0.1.18/stele-v0.1.18-darwin-amd64"
-      sha256 "15ab13aa24084de696e5907bde1709826aaa1a97e072211381c3c91403feb4ab"
+      url "https://github.com/provasign/stele/releases/download/v0.1.19/stele-v0.1.19-darwin-amd64"
+      sha256 "cfd6da944709495e23d51755d4c49bc838dc2ff9fd3c2b3742adc7bf33faaf02"
 
       define_method(:install) do
-        bin.install "stele-v0.1.18-darwin-amd64" => "stele"
+        bin.install "stele-v0.1.19-darwin-amd64" => "stele"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/provasign/stele/releases/download/v0.1.18/stele-v0.1.18-darwin-arm64"
-      sha256 "4ef097337eb4516cf443d279bbabc2e2be183e73fadb6e9b6074a0309628db0f"
+      url "https://github.com/provasign/stele/releases/download/v0.1.19/stele-v0.1.19-darwin-arm64"
+      sha256 "364759c9367958832391625fc0850b4c40347a09bd61c2432f61d3060352ae73"
 
       define_method(:install) do
-        bin.install "stele-v0.1.18-darwin-arm64" => "stele"
+        bin.install "stele-v0.1.19-darwin-arm64" => "stele"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/provasign/stele/releases/download/v0.1.18/stele-v0.1.18-linux-amd64"
-      sha256 "852bf62fedc990015e4d26dd1aaf5868f9901f0e781bba0c599ecf1b9e340d15"
+      url "https://github.com/provasign/stele/releases/download/v0.1.19/stele-v0.1.19-linux-amd64"
+      sha256 "fe47991d9d74b94b6ff01a69d34b84ffc2ff2069e51253b19cb080150b968f12"
 
       define_method(:install) do
-        bin.install "stele-v0.1.18-linux-amd64" => "stele"
+        bin.install "stele-v0.1.19-linux-amd64" => "stele"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/provasign/stele/releases/download/v0.1.18/stele-v0.1.18-linux-arm64"
-      sha256 "c31e4db4aa0bfe712ae2eb39fdddac266d2669a533acd23b3a43e27737c46a42"
+      url "https://github.com/provasign/stele/releases/download/v0.1.19/stele-v0.1.19-linux-arm64"
+      sha256 "c844d6a3b54fc33241414ab8309a6affa02342b4a6076b32515c4e32fc699124"
 
       define_method(:install) do
-        bin.install "stele-v0.1.18-linux-arm64" => "stele"
+        bin.install "stele-v0.1.19-linux-arm64" => "stele"
       end
     end
   end
