@@ -84,12 +84,9 @@ for tool in "${TOOLS[@]}"; do
 ' ;;
   esac
 
+  # No tool depends on another formula: stele carries Z3 inside its binary
+  # since v0.1.21.
   deps=""
-  if [ "${tool}" = "stele" ]; then
-    deps='
-  depends_on "z3"
-'
-  fi
 
   cat > "${formula}" <<FORMULA
 # typed: false
