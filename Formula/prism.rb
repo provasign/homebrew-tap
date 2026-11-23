@@ -4,43 +4,43 @@
 class Prism < Formula
   desc "Graph-ranked code context for AI coding agents — Grove engine embedded"
   homepage "https://github.com/provasign/prism"
-  version "1.3.0"
+  version "1.3.1"
   license "Apache-2.0"
 
   on_macos do
     if Hardware::CPU.intel?
-      url "https://github.com/provasign/prism/releases/download/v1.3.0/prism-v1.3.0-darwin-amd64"
-      sha256 "7dad9ade227fb44fd594c85e6dc3592481767083c68c782eef3a9d2054e44b2c"
+      url "https://github.com/provasign/prism/releases/download/v1.3.1/prism-v1.3.1-darwin-amd64"
+      sha256 "44278715ea6e59ccf505da595eb4188dbe56c1ac34a4bb26db5efeda1bd91f03"
 
       define_method(:install) do
-        bin.install "prism-v1.3.0-darwin-amd64" => "prism"
+        bin.install "prism-v1.3.1-darwin-amd64" => "prism"
       end
     end
     if Hardware::CPU.arm?
-      url "https://github.com/provasign/prism/releases/download/v1.3.0/prism-v1.3.0-darwin-arm64"
-      sha256 "462a3e9d63b0cabd26cd47057462031f2f7b9a3e5aabd822ac658ce2b40ded34"
+      url "https://github.com/provasign/prism/releases/download/v1.3.1/prism-v1.3.1-darwin-arm64"
+      sha256 "bd4563ab0fa0aefaad7fe9b3fc6a93d37bb405f86837a0a260a3f2ce2a2d8e00"
 
       define_method(:install) do
-        bin.install "prism-v1.3.0-darwin-arm64" => "prism"
+        bin.install "prism-v1.3.1-darwin-arm64" => "prism"
       end
     end
   end
 
   on_linux do
     if Hardware::CPU.intel? && Hardware::CPU.is_64_bit?
-      url "https://github.com/provasign/prism/releases/download/v1.3.0/prism-v1.3.0-linux-amd64"
-      sha256 "e4961b15878e0721790acbbcbd260c27edcda6ae70c10477a52bd80508324fed"
+      url "https://github.com/provasign/prism/releases/download/v1.3.1/prism-v1.3.1-linux-amd64"
+      sha256 "e86657da288ad4b2fcd2645beadcfbedfbd8f505efa836f422fc9932eea1c582"
 
       define_method(:install) do
-        bin.install "prism-v1.3.0-linux-amd64" => "prism"
+        bin.install "prism-v1.3.1-linux-amd64" => "prism"
       end
     end
     if Hardware::CPU.arm? && Hardware::CPU.is_64_bit?
-      url "https://github.com/provasign/prism/releases/download/v1.3.0/prism-v1.3.0-linux-arm64"
-      sha256 "c65f2626614f4c5b3ef267610483bd75a2f085014abfcaaf1bd282f91a75b1ae"
+      url "https://github.com/provasign/prism/releases/download/v1.3.1/prism-v1.3.1-linux-arm64"
+      sha256 "0f0ec6acab7cd2a652ae13599e01bd7987b2ed033b4d3fec6a322ba9f930c6a1"
 
       define_method(:install) do
-        bin.install "prism-v1.3.0-linux-arm64" => "prism"
+        bin.install "prism-v1.3.1-linux-arm64" => "prism"
       end
     end
   end
